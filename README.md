@@ -63,3 +63,50 @@ By default, system will not allow to execute the script. To modify the permissio
 ```bash
 chmod u+x ./bin/install_terraform_cli
 ```
+
+### Working with Env Vars
+
+All environment variables can be list out using `env` command.
+
+To filter out env vars - use  `grep` such as --- `env | grep`
+
+#### Setting and Unsetting Env Vars
+
+In terminal, env vars can be set using `export Hello='Hello world'`
+
+To unset, use --- `unset Hello`
+
+Env Vars can be temporarily set while running command, for example, 
+
+```sh
+
+Hello='World' ./bin/print_message
+```
+
+Within a bash script, env vars can be set without using `export` --- such as:
+
+```sh
+
+#!/usr/bin/env bash
+
+HELLO='World'
+
+echo $HELLO
+```
+
+#### Printing Env Vars
+
+Env Vars can be print using `echo $HELLO`
+
+#### Scoping of Env Vars
+
+While opening a new bash terminals in VS code, it will not be aware of env vars that being set in another environment/window. To persist env vars accross all the future terminals, env vars needs to be set in bash profile. eg. `.bash_profile`
+
+#### Persisting Env Vars in Gitpod
+
+Env vars can be persisted in Gitpod using its Gitpod secrets storage.
+
+```
+gp env HELLO='World'
+```
+Env vars can also be stored in `.gitpod.yml` file to store non-sensitive information.
