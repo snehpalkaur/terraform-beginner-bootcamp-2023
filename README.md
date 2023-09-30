@@ -136,6 +136,55 @@ Once it is successful, it will return the json payload ----
 ```
 Aws credentials can be set using Env vars or by running AWS configure.
 
+## Terraform Basics 🌍
+
+
+### Terraform Registry 🏢
+
+Terraform gets its building blocks from the [Terraform Registry](https://registry.terraform.io/?product_intent=terraform):
+
+- **Providers** ⚙️: Providers are like keys that let Terraform work with different computer services.
+
+- **Modules** 🧩: Modules are like Lego blocks. They help organize and reuse your Terraform code.
+
+### Terraform Console 🖥️
+
+To start using Terraform, type `terraform` in your computer's command line. It's like a menu showing available commands.
+
+### Terraform Init 🚀
+
+Before you start using Terraform for a project, run `terraform init` to set up your tools.
+
+### Terraform Plan 📝
+
+Use `terraform plan` to see what changes Terraform will make to your infrastructure before making them.
+
+### Terraform Apply 🚧
+
+When you're ready to make changes, use `terraform apply` to apply the changes to your infrastructure.
+While running the `terraform apply` cmd, it will ask for approval - to automate it, use auto approve flag eg. `terraform apply --auto-approve`
+
+### Terraform Lock files
+
+`.terraform.lock.hcl` contains the locked versioning for the providers or modules that should be used within the project.
+
+The Terrform Lock file **should be commited** to the Version Control System(VSC) eg. Github
+
+### Terraform state files
+
+`.terraform.tfstate` contains information about the current state of the infrastrucutre.
+
+This file **should not be committed** to VCS. It can contain sensitive information and losing it could potentially lose knowning the state of the infrastructure.
+
+`.terraform.tfstate.backup` is the previous state file.
+
+### Terraform Directory
+
+`.terraform` directory contains binaries of the terraform providers.
+
+
+
+
 
 
 
