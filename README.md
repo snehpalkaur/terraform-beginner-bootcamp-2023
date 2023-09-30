@@ -110,3 +110,32 @@ Env vars can be persisted in Gitpod using its Gitpod secrets storage.
 gp env HELLO='World'
 ```
 Env vars can also be stored in `.gitpod.yml` file to store non-sensitive information.
+
+### AWS CLI Installation
+
+AWS CLI is installed via bash script for this script -- [`./bin/install_aws_cli`](./bin/install_aws_cli)
+
+:bulb: [Getting Started Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+
+:bulb: [AWS CLI Env Vars](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
+
+To check AWS credentials configuration ---
+
+```bash
+aws sts get-caller-identity
+```
+
+Once it is successful, it will return the json payload ----
+
+```json
+{
+    "UserId": "xxxxxxxxxxxxx",
+    "Account": "1234567890",
+    "Arn": "arn:aws:iam::11111111111:user/sneh-terraform"
+}
+```
+Aws credentials can be set using Env vars or by running AWS configure.
+
+
+
+
