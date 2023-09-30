@@ -125,4 +125,17 @@ To check AWS credentials configuration ---
 aws sts get-caller-identity
 ```
 
+Once it is successful, it will return the json payload ----
+
+```json
+{
+    "UserId": "xxxxxxxxxxxxx",
+    "Account": "1234567890",
+    "Arn": "arn:aws:iam::11111111111:user/sneh-terraform"
+}
+```
+Aws credentials can be set using Env vars or by running AWS configure.
+
+
+
 
