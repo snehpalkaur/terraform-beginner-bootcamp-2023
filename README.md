@@ -164,6 +164,14 @@ Use `terraform plan` to see what changes Terraform will make to your infrastruct
 When you're ready to make changes, use `terraform apply` to apply the changes to your infrastructure.
 While running the `terraform apply` cmd, it will ask for approval - to automate it, use auto approve flag eg. `terraform apply --auto-approve`
 
+### Terraform Destroy :boom:
+
+To destroy your Terraform-managed resources, use the `terraform destroy` command. If you want to automate the approval process, include the `--auto-approve` flag like this:
+
+```bash
+terraform destroy --auto-approve
+```
+
 ### Terraform Lock files
 
 `.terraform.lock.hcl` contains the locked versioning for the providers or modules that should be used within the project.
@@ -181,6 +189,35 @@ This file **should not be committed** to VCS. It can contain sensitive informati
 ### Terraform Directory
 
 `.terraform` directory contains binaries of the terraform providers.
+
+
+## Deploying an S3 Bucket with Terraform AWS Provider 🚀
+
+When deploying an S3 bucket using Terraform and the AWS provider, it's crucial to follow AWS documentation guidelines. Failure to adhere to these guidelines may result in errors, such as bucket validation issues such as
+
+```shell
+
+Enter a value: yes
+
+random_string.bucket_name: Creating...
+random_string.bucket_name: Creation complete after 0s [id=r0)V?!$D-0MJX5fmGGWgbgkF?R)v!gK_]
+aws_s3_bucket.example: Creating...
+╷
+│ Error: validating S3 Bucket (r0)V?!$D-0MJX5fmGGWgbgkF?R)v!gK_) name: only lowercase alphanumeric characters and hyphens allowed in "r0)V?!$D-0MJX5fmGGWgbgkF?R)v!gK_"
+│ 
+│   with aws_s3_bucket.example,
+│   on main.tf line 24, in resource "aws_s3_bucket" "example":
+│   24: resource "aws_s3_bucket" "example" {
+│ 
+╵
+
+```
+
+ For AWS bucket naming conventions, please refer to the [official AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html).
+
+
+
+
 
 
 
