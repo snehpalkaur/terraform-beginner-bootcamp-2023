@@ -22,16 +22,16 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "example" {
-  bucket = "my-tf-test-bucket"
+  #Bucket naming rules
+  #https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
+  bucket = random_string.bucket_name.result
 
-  tags = {
-    Name        = "My bucket"
-    Environment = "Dev"
-  }
 }
 
 resource "random_string" "bucket_name" {
-  length  = 16
+  lower = true
+  upper = false
+  length  = 32
   special = false
 }
 
