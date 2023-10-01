@@ -193,6 +193,22 @@ This file **should not be committed** to VCS. It can contain sensitive informati
 
 ## Deploying an S3 Bucket with Terraform AWS Provider 🚀
 
+Basic example of Terraform code for creating an S3 bucket:
+```hcl
+resource "aws_s3_bucket" "example" {
+  #Bucket naming rules
+  #https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
+  bucket = random_string.bucket_name.result
+
+}
+
+resource "random_string" "bucket_name" {
+  lower = true
+  upper = false
+  length  = 32
+  special = false
+}
+```
 When deploying an S3 bucket using Terraform and the AWS provider, it's crucial to follow AWS documentation guidelines. Failure to adhere to these guidelines may result in errors, such as bucket validation issues :
 
 ```shell
