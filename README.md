@@ -193,7 +193,7 @@ This file **should not be committed** to VCS. It can contain sensitive informati
 
 ## Deploying an S3 Bucket with Terraform AWS Provider 🚀
 
-When deploying an S3 bucket using Terraform and the AWS provider, it's crucial to follow AWS documentation guidelines. Failure to adhere to these guidelines may result in errors, such as bucket validation issues such as
+When deploying an S3 bucket using Terraform and the AWS provider, it's crucial to follow AWS documentation guidelines. Failure to adhere to these guidelines may result in errors, such as bucket validation issues :
 
 ```shell
 
