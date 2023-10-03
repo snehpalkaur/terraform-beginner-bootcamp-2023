@@ -232,9 +232,7 @@ aws_s3_bucket.example: Creating...
  For AWS bucket naming conventions, please refer to the [official AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html).
 
 
-#### Issues with Terraform Cloud Login and Gitpod Workspace
-
-# Terraform Cloud Login and Gitpod Workspace Login Issues 👩‍💻🌐
+#### Issues with Terraform Cloud Login and Gitpod Workspace 👩‍💻🌐
 
 When attempting to execute `Terraform login`, it launches a graphical interface to generate an authentication token. However, this process doesn't function as expected when using GitPod VSCode in a web browser.
 
