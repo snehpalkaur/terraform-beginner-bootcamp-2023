@@ -232,8 +232,42 @@ aws_s3_bucket.example: Creating...
  For AWS bucket naming conventions, please refer to the [official AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html).
 
 
+#### Issues with Terraform Cloud Login and Gitpod Workspace
+
+# Terraform Cloud Login and Gitpod Workspace Login Issues 👩‍💻🌐
+
+When attempting to execute `Terraform login`, it launches a graphical interface to generate an authentication token. However, this process doesn't function as expected when using GitPod VSCode in a web browser.
+
+To resolve this issue, a manual token generation step is required in Terraform Cloud. Follow these steps:
+
+1. Manually generate a token by visiting the following URL in your web browser: 🌐
 
 
+ ```
+ https://app.terraform.io/app/settings/tokens?source=terraform-login
+ ```
+
+ After generating the token, create and open a file manually by running the following commands in your GitPod workspace: 💼
+
+
+ ```bash
+ 
+ touch /home/gitpod/.terraform.d/credentials.tfrc.json
+ open /home/gitpod/.terraform.d/credentials.tfrc.json
+ ```
+
+In the opened file (credentials.tfrc.json), provide the following JSON structure: 📝
+
+```json
+
+{
+    "credentials":{
+     "app.terraform.io":{
+        "token":"YOUR-TOKEN_CODE"
+        }
+    }
+}
+```
 
 
 
