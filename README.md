@@ -1,7 +1,10 @@
 # Terraform Beginner Bootcamp 2023
 
+- [x] [week 0 ](./journal/week0.md)
 
-## Semantic Versioning :mage:
+
+
+## Semantic Versioning 
 
 This project is going to utilize semantic versoning for its tagging --
 [semver.org](https://semver.org/)
@@ -56,7 +59,7 @@ source ./bin/install_terraform_cli
 ```
 
 
-### Linux permissions for Bash scripts
+#### Linux permissions for Bash scripts
 
 By default, system will not allow to execute the script. To modify the permissions of the file, change the user permissions to execute using following command.
 
@@ -64,7 +67,7 @@ By default, system will not allow to execute the script. To modify the permissio
 chmod u+x ./bin/install_terraform_cli
 ```
 
-### Working with Env Vars
+#### Working with Env Vars
 
 All environment variables can be list out using `env` command.
 
@@ -111,7 +114,7 @@ gp env HELLO='World'
 ```
 Env vars can also be stored in `.gitpod.yml` file to store non-sensitive information.
 
-### AWS CLI Installation
+## AWS CLI Installation
 
 AWS CLI is installed via bash script for this script -- [`./bin/install_aws_cli`](./bin/install_aws_cli)
 
@@ -136,10 +139,10 @@ Once it is successful, it will return the json payload ----
 ```
 Aws credentials can be set using Env vars or by running AWS configure.
 
-## Terraform Basics 🌍
+## Terraform Basics 
 
 
-### Terraform Registry 🏢
+### Terraform Registry 
 
 Terraform gets its building blocks from the [Terraform Registry](https://registry.terraform.io/?product_intent=terraform):
 
@@ -147,24 +150,24 @@ Terraform gets its building blocks from the [Terraform Registry](https://registr
 
 - **Modules** 🧩: Modules are like Lego blocks. They help organize and reuse your Terraform code.
 
-### Terraform Console 🖥️
+### Terraform Console 
 
 To start using Terraform, type `terraform` in your computer's command line. It's like a menu showing available commands.
 
-### Terraform Init 🚀
+#### Terraform Init 
 
 Before you start using Terraform for a project, run `terraform init` to set up your tools.
 
-### Terraform Plan 📝
+#### Terraform Plan 
 
 Use `terraform plan` to see what changes Terraform will make to your infrastructure before making them.
 
-### Terraform Apply 🚧
+#### Terraform Apply 
 
 When you're ready to make changes, use `terraform apply` to apply the changes to your infrastructure.
 While running the `terraform apply` cmd, it will ask for approval - to automate it, use auto approve flag eg. `terraform apply --auto-approve`
 
-### Terraform Destroy :boom:
+#### Terraform Destroy 
 
 To destroy your Terraform-managed resources, use the `terraform destroy` command. If you want to automate the approval process, include the `--auto-approve` flag like this:
 
@@ -191,7 +194,7 @@ This file **should not be committed** to VCS. It can contain sensitive informati
 `.terraform` directory contains binaries of the terraform providers.
 
 
-## Deploying an S3 Bucket with Terraform AWS Provider 🚀
+## Deploying an S3 Bucket with Terraform AWS Provider 
 
 Basic example of Terraform code for creating an S3 bucket:
 ```hcl
@@ -232,7 +235,7 @@ aws_s3_bucket.example: Creating...
  For AWS bucket naming conventions, please refer to the [official AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html).
 
 
-#### Issues with Terraform Cloud Login and Gitpod Workspace 👩‍💻🌐
+## Issues with Terraform Cloud Login and Gitpod Workspace 
 
 When attempting to execute `Terraform login`, it launches a graphical interface to generate an authentication token. However, this process doesn't function as expected when using GitPod VSCode in a web browser.
 
