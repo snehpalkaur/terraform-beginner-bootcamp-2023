@@ -1,3 +1,5 @@
+# Terraform Beginner Bootcamp 2023 - Week 0
+
 - [Semantic Versioning](#semantic-versioning)
 - [Isntall the Terraform CLI](#isntall-the-terraform-cli)
   * [Cosniderations with the Terraform CLI changes](#cosniderations-with-the-terraform-cli-changes)
