@@ -5,3 +5,4 @@
 ## Journals
 
 - [x] [week 0 ](./journal/week0.md)
+- [ ] [week 1 ](./journal/week1.md)
