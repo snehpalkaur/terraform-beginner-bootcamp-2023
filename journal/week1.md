@@ -72,6 +72,27 @@ Terraform state is essential for tracking and managing the resources you create.
 
 
 
+## Dealing with Configuration Drift
+
+
+### What happens if you loose your state file?
+
+If you loose your state file, you moost likely to tear down your all cloud infrastructure manually.
+
+You can use terraform import, but it won't work for all cloud resources. You need to check the terrraform provider's documentation for which rsources support import. 
+### Fix Missing Resources with Terraform Import
+
+`terraform import aws_s3_bucket.example`
+
+[Terraform Import]()
+
+### Fix Manual Configuration
+
+If someone goes and delete or modifies cloud resource manually through ClickOps. 
+
+If we run Terraform plan, it will atttempt to put our infrastructure back into the expected state fixinig our Confriguration drift. 
+
+
 
 
 
