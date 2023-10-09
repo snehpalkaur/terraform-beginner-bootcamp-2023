@@ -92,7 +92,37 @@ If someone goes and delete or modifies cloud resource manually through ClickOps.
 
 If we run Terraform plan, it will atttempt to put our infrastructure back into the expected state fixinig our Confriguration drift. 
 
+## Fix using Terraform Refresh
 
+
+## Terraform Modules
+
+### Terraform Module structure
+
+It is recommended to palce modules in `modules` directory when lcoally developing modules but it can be named whatever you like.
+### Passing Input variabels
+
+We can pass input variables to our module
+
+The module has to declare the terraform variables in its own `variabels.tf`
+```hcl
+
+  module "terrhouse_aws" {
+  source = "./modules/terrahouse_aws"
+  user_uuid = var.user_uuid
+  bucket_name = var.bucket_name
+  
+}```
+
+
+
+### Module Sources
+
+Using the  `source` we can import the module form various places eg;
+
+- locally
+- github
+- terraform Registry
 
 
 
