@@ -1,8 +1,32 @@
 # Terraform Beginner Bootcamp 2023 - Week 1
 
+## Fixing Tags
+
+[How to Delete Local and Remote Tags on Git](https://devconnected.com/how-to-delete-local-and-remote-tags-on-git/)
+
+Locall delete a tag
+```sh
+git tag -d <tag_name>
+```
+
+Remotely delete tag
+
+```sh
+git push --delete origin tagname
+```
+
+Checkout the commit that you want to retag. Grab the sha from your Github history.
+
+```sh
+git checkout <SHA>
+git tag M.M.P
+git push --tags
+git checkout main
+```
+
 ## Root Module Structure
 
-Our root module structure is as follows :-
+Our root module structure is as follows:
 
 ```
 PROJECT_ROOT
@@ -15,116 +39,174 @@ PROJECT_ROOT
 └── README.md               # required for root modules
 ```
 
-
 [Standard Module Structure](https://developer.hashicorp.com/terraform/language/modules/develop/structure)
 
 ## Terraform and Input Variables
-### Terrform Cloud Variables
 
-In Terraform, variables can set using two types:-
+### Terraform Cloud Variables
 
-- Environment Variables - would set in bash terminal eg. AWS credentials
-- Terraform Variables - would normally set in `tfvars` files
+In terraform we can set two kind of variables:
+- Enviroment Variables - those you would set in your bash terminal eg. AWS credentials
+- Terraform Variables - those that you would normally set in your tfvars file
 
-Terraform Cloud Variables can be set sensitive so that they are not visible in the UI
+We can set Terraform Cloud variables to be sensitive so they are not shown visibliy in the UI.
 
 ### Loading Terraform Input Variables
 
-`-var` flag can be used to set an input variable or override a variable in the tfvars file eg. `terraform -var user_uuid="my_user_uuid"`
+[Terraform Input Variables](https://developer.hashicorp.com/terraform/language/values/variables)
 
 ### var flag
-
-The var flag is a key component in Terraform that allows you to set and manipulate input variables when running Terraform commands. It's a versatile tool for customizing your infrastructure deployments.
-
+We can use the `-var` flag to set an input variable or override a variable in the tfvars file eg. `terraform -var user_ud="my-user_id"`
 
 ### var-file flag
 
-The var-file flag is used to specify an external variable file that contains values for input variables. It's a handy way to keep your variable values separate from your Terraform configurations, especially when dealing with sensitive information.
+- TODO: document this flag
 
-### terraform.tfvars
+### terraform.tvfars
 
-terraform.tfvars is a default file where you can define variable values for your Terraform configurations. These values can be automatically loaded when you run Terraform commands.
-
+This is the default file to load in terraform variables in blunk
 
 ### auto.tfvars
-auto.tfvars is another file that Terraform automatically loads to set variable values. It can be useful when you want to provide default values for your variables without explicitly specifying them on the command line.
+
+- TODO: document this functionality for terraform cloud
 
 ### order of terraform variables
 
-The order in which Terraform variables are defined can affect how they are processed. Variables are typically loaded in the following order, with later values overriding earlier ones:
+- TODO: document which terraform variables takes presendence.
 
-- Environment variables
+## Dealing With Configuration Drift
 
-- `terraform.tfvars`
+## What happens if we lose our state file?
 
-- `terraform.tfvars.json`
+If you lose your statefile, you most likley have to tear down all your cloud infrastructure manually.
 
-- `terraform.tfvars.hcl`
+You can use terraform port but it won't for all cloud resources. You need check the terraform providers documentation for which resources support import.
 
-- `auto.tfvars`
-- `auto.tfvars.json`
-- `auto.tfvars.hcl`
-- `-var command line flags`
-
-## Changing state - remote/local
-
-Terraform state is essential for tracking and managing the resources you create. Depending on your project's requirements, you can store your state remotely in a service like Terraform Cloud or locally on your machine. Managing state effectively is crucial to maintain the integrity of your infrastructure.
-
-
-
-## Dealing with Configuration Drift
-
-
-### What happens if you loose your state file?
-
-If you loose your state file, you moost likely to tear down your all cloud infrastructure manually.
-
-You can use terraform import, but it won't work for all cloud resources. You need to check the terrraform provider's documentation for which rsources support import. 
 ### Fix Missing Resources with Terraform Import
 
-`terraform import aws_s3_bucket.example`
+`terraform import aws_s3_bucket.bucket bucket-name`
 
-[Terraform Import]()
+[Terraform Import](https://developer.hashicorp.com/terraform/cli/import)
+[AWS S3 Bucket Import](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import)
 
 ### Fix Manual Configuration
 
 If someone goes and delete or modifies cloud resource manually through ClickOps. 
 
-If we run Terraform plan, it will atttempt to put our infrastructure back into the expected state fixinig our Confriguration drift. 
+If we run Terraform plan is with attempt to put our infrstraucture back into the expected state fixing Configuration Drift
 
 ## Fix using Terraform Refresh
 
+```sh
+terraform apply -refresh-only -auto-approve
+```
 
 ## Terraform Modules
 
-### Terraform Module structure
+### Terraform Module Structure
 
-It is recommended to palce modules in `modules` directory when lcoally developing modules but it can be named whatever you like.
-### Passing Input variabels
+It is recommend to place modules in a `modules` directory when locally developing modules but you can name it whatever you like.
 
-We can pass input variables to our module
+### Passing Input Variables
 
-The module has to declare the terraform variables in its own `variabels.tf`
-```hcl
+We can pass input variables to our module.
+The module has to declare the terraform variables in its own variables.tf
 
-  module "terrhouse_aws" {
+```tf
+module "terrahouse_aws" {
   source = "./modules/terrahouse_aws"
   user_uuid = var.user_uuid
   bucket_name = var.bucket_name
-  
-}```
+}
+```
 
+### Modules Sources
 
-
-### Module Sources
-
-Using the  `source` we can import the module form various places eg;
-
+Using the source we can import the module from various places eg:
 - locally
-- github
-- terraform Registry
+- Github
+- Terraform Registry
+
+```tf
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+}
+```
 
 
+[Modules Sources](https://developer.hashicorp.com/terraform/language/modules/sources)
+
+## Considerations when using ChatGPT to write Terraform
+
+LLMs such as ChatGPT may not be trained on the latest documentation or information about Terraform.
+
+It may likely produce older examples that could be deprecated. Often affecting providers.
+
+## Working with Files in Terraform
 
 
+### Fileexists function
 
+This is a built in terraform function to check the existance of a file.
+
+```tf
+condition = fileexists(var.error_html_filepath)
+```
+
+https://developer.hashicorp.com/terraform/language/functions/fileexists
+
+### Filemd5
+
+https://developer.hashicorp.com/terraform/language/functions/filemd5
+
+### Path Variable
+
+In terraform there is a special variable called `path` that allows us to reference local paths:
+- path.module = get the path for the current module
+- path.root = get the path for the root module
+[Special Path Variable](https://developer.hashicorp.com/terraform/language/expressions/references#filesystem-and-workspace-info)
+
+
+resource "aws_s3_object" "index_html" {
+  bucket = aws_s3_bucket.website_bucket.bucket
+  key    = "index.html"
+  source = "${path.root}/public/index.html"
+}
+
+## Terraform Locals
+
+Locals allows us to define local variables.
+It can be very useful when we need transform data into another format and have referenced a varaible.
+
+```tf
+locals {
+  s3_origin_id = "MyS3Origin"
+}
+```
+[Local Values](https://developer.hashicorp.com/terraform/language/values/locals)
+
+## Terraform Data Sources
+
+This allows use to source data from cloud resources.
+
+This is useful when we want to reference cloud resources without importing them.
+
+```tf
+data "aws_caller_identity" "current" {}
+
+output "account_id" {
+  value = data.aws_caller_identity.current.account_id
+}
+```
+[Data Sources](https://developer.hashicorp.com/terraform/language/data-sources)
+
+## Working with JSON
+
+We use the jsonencode to create the json policy inline in the hcl.
+
+```tf
+> jsonencode({"hello"="world"})
+{"hello":"world"}
+```
+
+[jsonencode](https://developer.hashicorp.com/terraform/language/functions/jsonencode)
