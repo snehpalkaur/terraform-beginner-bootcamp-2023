@@ -11,7 +11,7 @@
     + [auto.tfvars](#autotfvars)
     + [order of terraform variables](#order-of-terraform-variables)
   * [Dealing With Configuration Drift](#dealing-with-configuration-drift)
-  * [What happens if we lose our state file?](#what-happens-if-we-lose-our-state-file-)
+    + [What happens if we lose our state file?](#what-happens-if-we-lose-our-state-file-)
     + [Fix Missing Resources with Terraform Import](#fix-missing-resources-with-terraform-import)
     + [Fix Manual Configuration](#fix-manual-configuration)
   * [Fix using Terraform Refresh](#fix-using-terraform-refresh)
@@ -35,6 +35,7 @@
   * [For Each Expressions](#for-each-expressions)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 ## Fixing Tags
 
@@ -112,7 +113,7 @@ This is the default file to load in terraform variables in blunk
 
 ## Dealing With Configuration Drift
 
-## What happens if we lose our state file?
+### What happens if we lose our state file?
 
 If you lose your statefile, you most likley have to tear down all your cloud infrastructure manually.
 
